@@ -1,5 +1,5 @@
 class Prototype < ApplicationRecord
-  belongs_to :user
+  belongs_to :user #【間違い修正】belongs_to :users
   has_many :comments
   # has_many :comments
 

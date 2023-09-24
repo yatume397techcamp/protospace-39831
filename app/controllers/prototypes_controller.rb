@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
   def index
+    @prototypes = Prototype.all#indexアクションに、インスタンス変数@prototypesを定義し、すべてのプロトタイプの情報を代入した
   end
 
   def new
@@ -11,7 +12,8 @@ class PrototypesController < ApplicationController
     @user = current_user #【間違い修正】元々記載なし
 
     if @prototype.save
-      redirect_to prototypes_path(@user) #【間違い修正】redirect_to root_path
+      # redirect_to prototypes_path(@user) #【間違い修正】redirect_to root_path
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end

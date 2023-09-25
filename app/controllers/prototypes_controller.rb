@@ -10,14 +10,16 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     @user = current_user #【間違い修正】元々記載なし
-
     if @prototype.save
       # redirect_to prototypes_path(@user) #【間違い修正】redirect_to root_path
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
+  end
 
+  def show
+  
   end
 
   private

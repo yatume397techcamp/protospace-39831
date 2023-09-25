@@ -1,7 +1,6 @@
 class Prototype < ApplicationRecord
-  belongs_to :user #【間違い修正】belongs_to :users
+  belongs_to :user
   has_many :comments
-  # has_many :comments
 
   has_one_attached :image
 

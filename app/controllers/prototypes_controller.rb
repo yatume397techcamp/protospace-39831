@@ -19,7 +19,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
-  
+    # @prototype = 
   end
 
   private

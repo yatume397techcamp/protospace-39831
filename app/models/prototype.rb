@@ -1,6 +1,6 @@
 class Prototype < ApplicationRecord
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy # Prototypeテーブルのレコードが削除された場合commentsテーブルも一緒に削除
 
   has_one_attached :image
 

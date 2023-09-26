@@ -5,8 +5,10 @@ class CommentsController < ApplicationController
     binding.pry
     # @user = curret_user
     if @comment.save
-      redirect_to root_path
+      redirect_to prototype_path(@comment.prototype)
     else
+      @prototype = @comment.prototype
+      @comments = @prototype.comments
       render :new, status: :unprocessable_entity
     end
   end

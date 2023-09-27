@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
-  def index
-    @prototypes = Prototype.all#indexアクションに、インスタンス変数@prototypesを定義し、すべてのプロトタイプの情報を代入した
+  def index #indexアクションを設定
+    @prototypes = Prototype.all
   end
 
   def new
@@ -9,9 +9,8 @@ class PrototypesController < ApplicationController
 
   def create
     @prototype = Prototype.new(prototype_params)
-    @user = current_user #【間違い修正】元々記載なし
+    @user = current_user
     if @prototype.save
-      # redirect_to prototypes_path(@user) #【間違い修正】redirect_to root_path
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -19,7 +18,14 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    # binding.pry
     @prototype = Prototype.find(params[:id])
+    # @comments = @prototype.comments
+    @comment = Comment.new
+    # binding.pry
+
+    # prototypesコントローラーのshowアクションに、@commentというインスタンス変数を定義し、Commentモデルの新規オブジェクトを代入
+    # @comment = Comment.new(comment_params)
   end
 
   def edit
@@ -28,8 +34,6 @@ class PrototypesController < ApplicationController
 
   def update
     @prototype = Prototype.find(params[:id])
-    # prototype.update(prototype_params)
-    # redirect_to edit_prototype_path
     if @prototype.update(prototype_params)
       redirect_to root_path
     else
@@ -47,7 +51,7 @@ class PrototypesController < ApplicationController
 
   def prototype_params
     params.require(:prototype).permit(:image, :title, :catch_copy, :concept).merge(user_id: current_user.id)
-
-    # binding.pry
   end
+
+
 end

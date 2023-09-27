@@ -18,14 +18,8 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # binding.pry
     @prototype = Prototype.find(params[:id])
-    # @comments = @prototype.comments
     @comment = Comment.new
-    # binding.pry
-
-    # prototypesコントローラーのshowアクションに、@commentというインスタンス変数を定義し、Commentモデルの新規オブジェクトを代入
-    # @comment = Comment.new(comment_params)
   end
 
   def edit

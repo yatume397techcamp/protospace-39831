@@ -1,4 +1,10 @@
+#prototypes_controller.rb
 class PrototypesController < ApplicationController
+  # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  # before_action :set_prototype, only: [:edit, :update, :destroy]
+  # before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!,only:[:edit, :new]
+
   def index #indexアクションを設定
     @prototypes = Prototype.all
   end
@@ -47,5 +53,12 @@ class PrototypesController < ApplicationController
     params.require(:prototype).permit(:image, :title, :catch_copy, :concept).merge(user_id: current_user.id)
   end
 
+  # def set_prototype
+  #   @prototype = Prototype.find(params[:id])
+  # end
+
+  # def ensure_correct_user
+  #   redirect_to root_path unless @prototype.user_id == current_user.id
+  # end
 
 end

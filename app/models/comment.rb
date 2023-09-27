@@ -1,3 +1,4 @@
+#comment.rb
 class Comment < ApplicationRecord
 
 
